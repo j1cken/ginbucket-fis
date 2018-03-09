@@ -20,29 +20,6 @@ public class AppConfig {
   //     return cfg;
   // }
 
-  // @Bean
-  // RoutesBuilder myRoutes() {
-  //   return new MyRouteBuilder();
-  // return new RouteBuilder() {
-
-  //   @Override
-  //   public void configure() throws Exception {
-  //     String chatId = System.getenv("TELEGRAM_CHAT_ID");
-  //     String authToken = System.getenv("TELEGRAM_AUTH_TOKEN");
-
-  //     restConfiguration().component("undertow").port(8080).bindingMode(RestBindingMode.auto);
-
-  //     rest("/opp").put("/subscribe").to("amqp:queue:subs");
-
-  //     from("amqp:queue:subs").setHeader("CamelTelegramChatId", constant(chatId))
-  //         // .setHeader("CamelTelegramMediaType", constant(TelegramMediaType.TEXT))
-  //         .to("telegram:bots/" + authToken);
-
-  //   }
-
-  // };
-  // }
-
   String serviceName = System.getenv("AMQP_SVC_NAME");
   String servicePort = System.getenv("AMQP_SVC_PORT");
   String userName = System.getenv("AMQP_USERNAME");
