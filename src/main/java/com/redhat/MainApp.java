@@ -27,13 +27,9 @@ public class MainApp extends RouteBuilder {
 
         restConfiguration().component("undertow").port(8080).bindingMode(RestBindingMode.auto);
 
-        // rest("/opp").put("/subscribe").to("amqp:queue:subs");
+        rest("/opp").put("/subscribe").to("amqp:queue:subs");
 
-        // from("amqp:queue:subs").setHeader("CamelTelegramChatId", constant(chatId))
-        //         .to("telegram:bots/" + authToken);
-        rest("/opp").put("/subscribe").to("direct:foo");
-
-        from("direct:foo").setHeader("CamelTelegramChatId", constant(chatId)).to("telegram:bots/" + authToken);
+        from("amqp:queue:subs").setHeader("CamelTelegramChatId", constant(chatId)).to("telegram:bots/" + authToken);
 
     }
 
