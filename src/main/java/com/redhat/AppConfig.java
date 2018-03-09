@@ -7,59 +7,82 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
-    // @Value("${security.loginUrl}")
-    // String loginUrl;
+  // @Value("${security.loginUrl}")
+  // String loginUrl;
 
-    // @Autowired
-    // SalesforceComponent component;
+  // @Autowired
+  // SalesforceComponent component;
 
-    // @Bean("loginConfig")
-    // public SalesforceLoginConfig loginConfig() {
-    //     SalesforceLoginConfig cfg = new SalesforceLoginConfig();
-    //     cfg.setLoginUrl(loginUrl);
-    //     return cfg;
-    // }
+  // @Bean("loginConfig")
+  // public SalesforceLoginConfig loginConfig() {
+  //     SalesforceLoginConfig cfg = new SalesforceLoginConfig();
+  //     cfg.setLoginUrl(loginUrl);
+  //     return cfg;
+  // }
 
-    String serviceName = System.getenv("AMQP_SVC_NAME");
-    String servicePort = System.getenv("AMQP_SVC_PORT");
-    String userName = System.getenv("AMQP_USERNAME");
-    String userPassword = System.getenv("AMQP_USERPWD");
+  // @Bean
+  // RoutesBuilder myRoutes() {
+  //   return new MyRouteBuilder();
+  // return new RouteBuilder() {
 
-    @Bean
-    AMQPConnectionDetails amqpConnection() {
-        return new AMQPConnectionDetails("amqp://" + serviceName + ":" + servicePort, userName, userPassword);
-    }
+  //   @Override
+  //   public void configure() throws Exception {
+  //     String chatId = System.getenv("TELEGRAM_CHAT_ID");
+  //     String authToken = System.getenv("TELEGRAM_AUTH_TOKEN");
 
-    // @Bean
-    // public JmsConnectionFactory jmsConnectionFactory() {
-    //     JmsConnectionFactory factory = new JmsConnectionFactory();
-    //     factory.setRemoteURI("amqp://" + serviceName + ":" + servicePort);
-    //     factory.setUsername(userName);
-    //     factory.setPassword(userPassword);
-    //     return factory;
-    // }
+  //     restConfiguration().component("undertow").port(8080).bindingMode(RestBindingMode.auto);
 
-    // @Bean
-    // public CachingConnectionFactory jmsCachingConnectionFactory() {
-    //     CachingConnectionFactory factory = new CachingConnectionFactory();
-    //     factory.setTargetConnectionFactory(jmsConnectionFactory());
-    //     return factory;
-    // }
+  //     rest("/opp").put("/subscribe").to("amqp:queue:subs");
 
-    // @Bean
-    // public JmsConfiguration jmsConfig() {
-    //     JmsConfiguration jmsConfiguration = new JmsConfiguration();
-    //     jmsConfiguration.setConnectionFactory(jmsCachingConnectionFactory());
-    //     jmsConfiguration.setCacheLevelName("CACHE_CONSUMER");
-    //     return jmsConfiguration;
-    // }
+  //     from("amqp:queue:subs").setHeader("CamelTelegramChatId", constant(chatId))
+  //         // .setHeader("CamelTelegramMediaType", constant(TelegramMediaType.TEXT))
+  //         .to("telegram:bots/" + authToken);
 
-    // @Bean
-    // public AMQPComponent amqp() {
-    //     AMQPComponent component = new AMQPComponent();
-    //     component.setConfiguration(jmsConfig());
-    //     return component;
-    // }
+  //   }
+
+  // };
+  // }
+
+  String serviceName = System.getenv("AMQP_SVC_NAME");
+  String servicePort = System.getenv("AMQP_SVC_PORT");
+  String userName = System.getenv("AMQP_USERNAME");
+  String userPassword = System.getenv("AMQP_USERPWD");
+
+  @Bean
+  AMQPConnectionDetails amqpConnection() {
+    return new AMQPConnectionDetails("amqp://" + serviceName + ":" + servicePort, userName, userPassword);
+  }
+
+  // @Bean
+  // public JmsConnectionFactory jmsConnectionFactory() {
+  //     JmsConnectionFactory factory = new JmsConnectionFactory();
+  //     factory.setRemoteURI("amqp://" + serviceName + ":" + servicePort);
+  //     factory.setUsername(userName);
+  //     factory.setPassword(userPassword);
+  //     return factory;
+  // }
+
+  // @Bean
+  // public CachingConnectionFactory jmsCachingConnectionFactory() {
+  //     CachingConnectionFactory factory = new CachingConnectionFactory();
+  //     factory.setTargetConnectionFactory(jmsConnectionFactory());
+  //     return factory;
+  // }
+
+  // @Bean
+  // public JmsConfiguration jmsConfig() {
+  //     JmsConfiguration jmsConfiguration = new JmsConfiguration();
+  //     jmsConfiguration.setConnectionFactory(jmsCachingConnectionFactory());
+  //     jmsConfiguration.setCacheLevelName("CACHE_CONSUMER");
+  //     return jmsConfiguration;
+  // }
+
+  // @Bean
+  // public AMQPComponent amqp() {
+  //     AMQPComponent component = new AMQPComponent();
+  //     component.setConfiguration(jmsConfig());
+  //     return component;
+  // }
 
 }
 
